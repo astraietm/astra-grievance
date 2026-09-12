@@ -46,15 +46,18 @@ export async function GET(req: NextRequest) {
       },
     });
 
-    if (canIncludeIdentity && reason) {
-      // Log export access for each grievance or bulk export
-      await prisma.identityAccessLog.create({
-        data: {
-          grievanceId: grievances[0]?.id || 'bulk_export',
-          adminId: user.id,
-          reason: `[BULK EXPORT] ${sanitizeInput(reason)}`,
-        },
-      });
+    if (canIncludeIdentity && reason && grievances.length > 0) {
+      await Promise.all(
+        grievances.map((g) =>
+          prisma.identityAccessLog.create({
+            data: {
+              grievanceId: g.id,
+              adminId: user.id,
+              reason: `[BULK EXPORT] ${sanitizeInput(reason)}`,
+            },
+          })
+        )
+      );
     }
 
     // Generate CSV

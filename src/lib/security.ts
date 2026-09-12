@@ -33,19 +33,33 @@ export async function generatePublicGrievanceId(): Promise<string> {
   const currentYear = new Date().getFullYear();
   const yearPrefix = `GRV-${currentYear}-`;
 
-  // Count existing grievances for current year
-  const count = await prisma.grievance.count({
+  const lastGrievance = await prisma.grievance.findFirst({
     where: {
       publicId: {
         startsWith: yearPrefix,
       },
     },
+    orderBy: {
+      publicId: 'desc',
+    },
   });
 
-  const nextNumber = count + 1;
-  const paddedNumber = nextNumber.toString().padStart(4, '0');
-  
-  return `${yearPrefix}${paddedNumber}`;
+  let nextNum = 1;
+  if (lastGrievance) {
+    const parts = lastGrievance.publicId.split('-');
+    const parsed = parseInt(parts[parts.length - 1], 10);
+    if (!isNaN(parsed)) {
+      nextNum = parsed + 1;
+    }
+  }
+
+  let publicId = `${yearPrefix}${nextNum.toString().padStart(4, '0')}`;
+  while (await prisma.grievance.findUnique({ where: { publicId } })) {
+    nextNum++;
+    publicId = `${yearPrefix}${nextNum.toString().padStart(4, '0')}`;
+  }
+
+  return publicId;
 }
 
 /**

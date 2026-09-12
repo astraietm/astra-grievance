@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import {
@@ -102,7 +102,7 @@ export default function AdminDashboardPage() {
     }
   }, [status, router]);
 
-  const fetchGrievances = async () => {
+  const fetchGrievances = useCallback(async () => {
     try {
       setLoading(true);
       setError('');
@@ -129,13 +129,13 @@ export default function AdminDashboardPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [search, categoryFilter, statusFilter, priorityFilter, sort]);
 
   useEffect(() => {
     if (status === 'authenticated') {
       fetchGrievances();
     }
-  }, [status, categoryFilter, statusFilter, priorityFilter, sort]);
+  }, [status, fetchGrievances]);
 
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -262,7 +262,11 @@ export default function AdminDashboardPage() {
 
   const triggerExport = () => {
     let url = '/api/admin/export';
-    if (exportIncludeIdentity && exportReason.trim()) {
+    if (exportIncludeIdentity) {
+      if (!exportReason.trim()) {
+        alert('Mandatory justification reason required to export complainant identity details.');
+        return;
+      }
       url += `?includeIdentity=true&reason=${encodeURIComponent(exportReason.trim())}`;
     }
     window.open(url, '_blank');

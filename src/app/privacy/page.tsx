@@ -79,7 +79,7 @@ export default function PrivacyPage() {
             <h2>3. Identity Access Audit Logging</h2>
           </div>
           <p className="text-sm text-slate-300 leading-relaxed">
-            Any attempt to view or export a complainant's identity details generates a permanent record in the <code className="text-cyan-400 font-mono">IdentityAccessLog</code> system table, recording the administrator ID, exact timestamp, and mandatory justification reason.
+            Any attempt to view or export a complainant&apos;s identity details generates a permanent record in the <code className="text-cyan-400 font-mono">IdentityAccessLog</code> system table, recording the administrator ID, exact timestamp, and mandatory justification reason.
           </p>
         </div>
 
