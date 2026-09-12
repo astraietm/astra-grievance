@@ -99,19 +99,10 @@ CREATE TABLE IF NOT EXISTS "IdentityAccessLog" (
 INSERT INTO "Category" ("id", "name", "slug", "description") VALUES
 (uuid_generate_v4()::text, 'Academic', 'academic', 'Curriculum, classes, course content, and academic scheduling'),
 (uuid_generate_v4()::text, 'Faculty / Teaching', 'faculty-teaching', 'Teaching methodology, evaluation, and faculty interactions'),
-(uuid_generate_v4()::text, 'Examination', 'examination', 'Exam scheduling, hall tickets, results, re-evaluation, and grading'),
-(uuid_generate_v4()::text, 'Infrastructure', 'infrastructure', 'Classroom facilities, library, Wi-Fi, electricity, and campus amenities'),
-(uuid_generate_v4()::text, 'Laboratory', 'laboratory', 'Lab equipment, software availability, lab safety, and lab instructor assistance'),
-(uuid_generate_v4()::text, 'Hostel', 'hostel', 'Hostel accommodation, food quality, maintenance, and hostel regulations'),
-(uuid_generate_v4()::text, 'Transportation', 'transportation', 'College bus timings, routes, driver behavior, and transit safety'),
 (uuid_generate_v4()::text, 'Harassment / Misconduct', 'harassment-misconduct', 'Ragging, bullying, verbal abuse, unwanted behavior, or harassment'),
-(uuid_generate_v4()::text, 'Discrimination', 'discrimination', 'Bias or unfair treatment based on gender, region, caste, or background'),
-(uuid_generate_v4()::text, 'Cybersecurity / Digital Safety', 'cybersecurity-digital-safety', 'Data privacy breach, unauthorized access, digital security concerns, phishing'),
-(uuid_generate_v4()::text, 'Department Activities', 'department-activities', 'ASTRA association events, workshops, technical fests, and symposiums'),
-(uuid_generate_v4()::text, 'Student Association', 'student-association', 'Association elections, student representative concerns, and activities'),
-(uuid_generate_v4()::text, 'Administrative', 'administrative', 'Fee payments, certificates, office requests, and documentation delays'),
-(uuid_generate_v4()::text, 'Other', 'other', 'General concerns or matters not covered by specific categories')
+(uuid_generate_v4()::text, 'Student Association', 'student-association', 'Association elections, student representative concerns, and activities')
 ON CONFLICT ("slug") DO UPDATE SET "name" = EXCLUDED."name", "description" = EXCLUDED."description";
+
 
 -- Insert Default Accounts (Password for all: AstraSecure2026!)
 INSERT INTO "User" ("id", "email", "name", "role", "department", "passwordHash", "year") VALUES

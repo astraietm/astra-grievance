@@ -3,7 +3,7 @@ import { Resend } from 'resend';
 const resendApiKey = process.env.RESEND_API_KEY;
 const resend = resendApiKey ? new Resend(resendApiKey) : null;
 
-const DEFAULT_FROM = process.env.RESEND_FROM_EMAIL || 'ASTRA Grievance Portal <onboarding@resend.dev>';
+const DEFAULT_FROM = process.env.RESEND_FROM_EMAIL || 'ASTRA Grievance Portal <grievance@astraietm.in>';
 const APP_URL = process.env.NEXTAUTH_URL || 'https://grievance.astraietm.in';
 
 function formatStatus(status: string): string {

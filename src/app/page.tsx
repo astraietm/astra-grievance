@@ -39,17 +39,10 @@ const steps = [
 const categories = [
   { name: 'Academic', desc: 'Curriculum, classes & course scheduling', tag: 'Academic' },
   { name: 'Faculty / Teaching', desc: 'Evaluation, teaching & interactions', tag: 'Teaching' },
-  { name: 'Examination', desc: 'Exams, hall tickets & re-evaluation', tag: 'Exams' },
-  { name: 'Infrastructure', desc: 'Classrooms, Wi-Fi & library amenities', tag: 'Campus' },
-  { name: 'Laboratory', desc: 'Lab equipment, software & safety', tag: 'Labs' },
-  { name: 'Hostel', desc: 'Accommodation, food & hostel rules', tag: 'Hostel' },
-  { name: 'Transportation', desc: 'College buses & transit safety', tag: 'Transit' },
   { name: 'Harassment / Misconduct', desc: 'Ragging, bullying & conduct issues', tag: 'Protection' },
-  { name: 'Discrimination', desc: 'Bias or unfair treatment concerns', tag: 'Equity' },
-  { name: 'Cybersecurity / Digital Safety', desc: 'Privacy, unauthorized access & digital safety', tag: 'Cyber' },
-  { name: 'Department Activities', desc: 'ASTRA association workshops & events', tag: 'Events' },
-  { name: 'Administrative', desc: 'Fee payments, certificates & requests', tag: 'Admin' },
+  { name: 'Student Association', desc: 'Association elections, concerns & activities', tag: 'Association' },
 ];
+
 
 export default function LandingPage() {
   return (

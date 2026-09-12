@@ -6,32 +6,30 @@ const prisma = new PrismaClient();
 const defaultCategories = [
   { name: 'Academic', slug: 'academic', description: 'Curriculum, classes, course content, and academic scheduling' },
   { name: 'Faculty / Teaching', slug: 'faculty-teaching', description: 'Teaching methodology, evaluation, and faculty interactions' },
-  { name: 'Examination', slug: 'examination', description: 'Exam scheduling, hall tickets, results, re-evaluation, and grading' },
-  { name: 'Infrastructure', slug: 'infrastructure', description: 'Classroom facilities, library, Wi-Fi, electricity, and campus amenities' },
-  { name: 'Laboratory', slug: 'laboratory', description: 'Lab equipment, software availability, lab safety, and lab instructor assistance' },
-  { name: 'Hostel', slug: 'hostel', description: 'Hostel accommodation, food quality, maintenance, and hostel regulations' },
-  { name: 'Transportation', slug: 'transportation', description: 'College bus timings, routes, driver behavior, and transit safety' },
   { name: 'Harassment / Misconduct', slug: 'harassment-misconduct', description: 'Ragging, bullying, verbal abuse, unwanted behavior, or harassment' },
-  { name: 'Discrimination', slug: 'discrimination', description: 'Bias or unfair treatment based on gender, region, caste, or background' },
-  { name: 'Cybersecurity / Digital Safety', slug: 'cybersecurity-digital-safety', description: 'Data privacy breach, unauthorized access, digital security concerns, phishing' },
-  { name: 'Department Activities', slug: 'department-activities', description: 'ASTRA association events, workshops, technical fests, and symposiums' },
   { name: 'Student Association', slug: 'student-association', description: 'Association elections, student representative concerns, and activities' },
-  { name: 'Administrative', slug: 'administrative', description: 'Fee payments, certificates, office requests, and documentation delays' },
-  { name: 'Other', slug: 'other', description: 'General concerns or matters not covered by specific categories' },
 ];
+
 
 async function main() {
   console.log('🌱 Starting database seeding...');
 
   // 1. Seed Categories
+  const allowedSlugs = defaultCategories.map((c) => c.slug);
+  await prisma.category.updateMany({
+    where: { slug: { notIn: allowedSlugs } },
+    data: { active: false },
+  });
+
   for (const cat of defaultCategories) {
     await prisma.category.upsert({
       where: { slug: cat.slug },
-      update: { name: cat.name, description: cat.description },
-      create: cat,
+      update: { name: cat.name, description: cat.description, active: true },
+      create: { ...cat, active: true },
     });
   }
-  console.log(`✅ Seeded ${defaultCategories.length} categories.`);
+  console.log(`✅ Seeded ${defaultCategories.length} active categories.`);
+
 
   // 2. Seed Default Accounts for Development / Initial Deployment
   const defaultPasswordHash = await bcrypt.hash('AstraSecure2026!', 10);
