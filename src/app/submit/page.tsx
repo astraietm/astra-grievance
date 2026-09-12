@@ -142,8 +142,8 @@ export default function SubmitGrievancePage() {
     return (
       <div className="min-h-[60vh] flex items-center justify-center">
         <div className="flex flex-col items-center gap-3">
-          <div className="w-10 h-10 border-4 border-cyan-500 border-t-transparent rounded-full animate-spin" />
-          <p className="text-sm text-slate-400 font-mono">Verifying authentication status...</p>
+          <div className="w-10 h-10 border-4 border-neo-cyan border-t-transparent animate-spin" />
+          <p className="text-xs text-neo-yellow font-pixel">Verifying authentication status...</p>
         </div>
       </div>
     );
@@ -153,42 +153,42 @@ export default function SubmitGrievancePage() {
   if (submittedPublicId) {
     return (
       <div className="max-w-2xl mx-auto px-4 py-16">
-        <div className="glass-card p-8 sm:p-12 rounded-3xl border border-cyan-500/30 text-center space-y-8 shadow-2xl relative">
+        <div className="neo-card p-8 sm:p-12 border-3 border-black shadow-[8px_8px_0px_0px_#00FF66] text-center space-y-8 relative bg-[#161622]">
           
-          <div className="mx-auto w-20 h-20 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 flex items-center justify-center shadow-lg shadow-emerald-500/20">
-            <CheckCircle2 className="w-10 h-10" />
+          <div className="mx-auto w-20 h-20 bg-neo-green text-black border-3 border-black shadow-[4px_4px_0px_0px_#000] flex items-center justify-center">
+            <CheckCircle2 className="w-10 h-10 stroke-[3]" />
           </div>
 
           <div className="space-y-2">
-            <h1 className="text-3xl font-extrabold text-white">Grievance Submitted Successfully</h1>
-            <p className="text-sm text-slate-400">
+            <h1 className="font-pixel text-2xl sm:text-3xl font-extrabold text-white">Grievance Submitted Successfully</h1>
+            <p className="text-xs text-slate-300 font-mono">
               Your report has been logged securely into the ASTRA IETM Confidential Grievance System.
             </p>
           </div>
 
           {/* Grievance ID Display Card */}
-          <div className="p-6 rounded-2xl bg-slate-900/90 border border-cyan-500/40 space-y-3">
-            <span className="text-xs uppercase font-mono tracking-widest text-cyan-400 font-bold">
+          <div className="p-6 bg-[#121218] border-3 border-black shadow-[4px_4px_0px_0px_#FFE600] space-y-3">
+            <span className="font-pixel text-xs uppercase font-bold text-neo-yellow">
               Your Unique Grievance ID
             </span>
-            <div className="text-3xl sm:text-4xl font-extrabold font-mono text-cyan-300 tracking-wider">
+            <div className="text-3xl sm:text-4xl font-extrabold font-pixel text-neo-cyan tracking-wider">
               {submittedPublicId}
             </div>
-            <p className="text-xs text-slate-400">
+            <p className="text-xs text-slate-400 font-mono">
               Save this ID to monitor progress and view official administrator responses.
             </p>
             <button
               onClick={copyToClipboard}
-              className="mt-2 inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-300 border border-cyan-500/40 text-xs font-semibold transition-all"
+              className="mt-2 inline-flex items-center gap-2 px-4 py-2 bg-neo-yellow text-black border-2 border-black font-pixel text-xs font-bold shadow-[2px_2px_0px_0px_#000] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none"
             >
               {copied ? (
                 <>
-                  <Check className="w-4 h-4 text-emerald-400" />
+                  <Check className="w-4 h-4 text-black stroke-[3]" />
                   <span>Copied to Clipboard!</span>
                 </>
               ) : (
                 <>
-                  <Copy className="w-4 h-4" />
+                  <Copy className="w-4 h-4 text-black stroke-[2.5]" />
                   <span>Copy Grievance ID</span>
                 </>
               )}
@@ -196,10 +196,10 @@ export default function SubmitGrievancePage() {
           </div>
 
           {/* Privacy Note */}
-          <div className="p-4 rounded-xl bg-slate-950/60 border border-slate-800 text-xs text-slate-400 flex items-start gap-3 text-left">
-            <Lock className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
+          <div className="p-4 bg-[#121218] border-2 border-black text-xs text-slate-300 font-mono flex items-start gap-3 text-left">
+            <Lock className="w-4 h-4 text-neo-cyan shrink-0 mt-0.5 stroke-[2.5]" />
             <p>
-              Your Google identity is saved securely on the backend but is <strong>not visible to grievance reviewers</strong>.
+              Your Google identity is saved securely on the backend but is <strong className="text-neo-yellow">not visible to grievance reviewers</strong>.
             </p>
           </div>
 
@@ -207,16 +207,16 @@ export default function SubmitGrievancePage() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
             <Link
               href={`/track?id=${submittedPublicId}`}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold text-sm shadow-lg shadow-cyan-500/20"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-neo-cyan text-black font-pixel text-xs font-bold border-3 border-black shadow-[4px_4px_0px_0px_#000] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition-all"
             >
-              <Search className="w-4 h-4" />
+              <Search className="w-4 h-4 stroke-[2.5]" />
               <span>Track Grievance Now</span>
             </Link>
             <Link
               href="/"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white font-semibold text-sm border border-slate-700"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-neo-card text-white font-pixel text-xs font-bold border-3 border-black shadow-[4px_4px_0px_0px_#000] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition-all"
             >
-              <Home className="w-4 h-4" />
+              <Home className="w-4 h-4 stroke-[2.5]" />
               <span>Return Home</span>
             </Link>
           </div>
@@ -232,48 +232,48 @@ export default function SubmitGrievancePage() {
         
         {/* Page Header */}
         <div className="space-y-2">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/60 border border-cyan-800/60 text-cyan-400 text-xs font-mono font-semibold">
-            <Lock className="w-3.5 h-3.5" />
-            <span>Secure Confidential Submission</span>
+          <div className="inline-flex items-center gap-2 px-3 py-1 bg-neo-yellow text-black font-pixel text-xs font-bold border-2 border-black shadow-[2px_2px_0px_0px_#000]">
+            <Lock className="w-3.5 h-3.5 stroke-[2.5]" />
+            <span>[SECURE CONFIDENTIAL SUBMISSION]</span>
           </div>
-          <h1 className="text-3xl sm:text-4xl font-extrabold text-white">Submit a Grievance</h1>
-          <p className="text-sm text-slate-400">
+          <h1 className="font-pixel text-3xl sm:text-4xl font-extrabold text-white">Submit a Grievance</h1>
+          <p className="text-xs sm:text-sm text-slate-300 font-mono">
             Report concerns or suggestions to the Cyber Security Department Association of ASTRA IETM.
           </p>
         </div>
 
         {/* Security Notice Banner */}
-        <div className="p-4 sm:p-5 rounded-2xl bg-cyan-950/30 border border-cyan-500/30 text-cyan-200 text-xs sm:text-sm flex items-start gap-3.5 backdrop-blur-md">
-          <ShieldCheck className="w-6 h-6 text-cyan-400 shrink-0 mt-0.5" />
+        <div className="p-5 bg-[#161622] border-3 border-black shadow-[4px_4px_0px_0px_#00F0FF] text-xs sm:text-sm flex items-start gap-3.5 font-mono">
+          <ShieldCheck className="w-6 h-6 text-neo-cyan shrink-0 mt-0.5 stroke-[2.5]" />
           <div>
-            <h4 className="font-bold text-white mb-0.5">Verified & Confidential Reporting</h4>
+            <h2 className="font-pixel font-bold text-neo-yellow text-sm mb-0.5">Verified & Confidential Reporting</h2>
             <p className="text-slate-300 leading-relaxed text-xs">
-              Your identity is verified for security purposes via your Google account. Your name and email address will <strong className="text-cyan-400">not</strong> be displayed to grievance reviewers.
+              Your identity is verified for security purposes via your Google account. Your name and email address will <strong className="text-neo-cyan font-pixel font-bold">NOT</strong> be displayed to grievance reviewers.
             </p>
           </div>
         </div>
 
         {/* Error Alert */}
         {error && (
-          <div className="p-4 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-400 text-sm flex items-center gap-3">
-            <AlertCircle className="w-5 h-5 shrink-0" />
+          <div className="p-4 bg-neo-pink text-white border-3 border-black shadow-[3px_3px_0px_0px_#000] text-xs font-mono flex items-center gap-3">
+            <AlertCircle className="w-5 h-5 shrink-0 stroke-[2.5]" />
             <span>{error}</span>
           </div>
         )}
 
         {/* Submission Form */}
-        <form onSubmit={handleSubmit} className="glass-card p-6 sm:p-10 rounded-3xl border border-slate-800 space-y-6">
+        <form onSubmit={handleSubmit} className="neo-card p-6 sm:p-10 border-3 border-black shadow-[8px_8px_0px_0px_#FFE600] space-y-6 bg-[#161622]">
           
           {/* Category Dropdown */}
           <div className="space-y-2">
-            <label className="block text-sm font-semibold text-slate-200">
-              Grievance Category <span className="text-rose-400">*</span>
+            <label className="block font-pixel text-xs font-bold text-white uppercase">
+              Grievance Category <span className="text-neo-pink">*</span>
             </label>
             <select
               value={categoryId}
               onChange={(e) => setCategoryId(e.target.value)}
               required
-              className="w-full px-4 py-3 rounded-xl bg-slate-900/90 border border-slate-800 text-white text-sm focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500"
+              className="w-full px-4 py-3 bg-[#121218] border-2 border-black text-white font-mono text-sm focus:outline-none focus:border-neo-cyan focus:shadow-[3px_3px_0px_0px_#00F0FF]"
             >
               {categories.map((cat) => (
                 <option key={cat.id} value={cat.id}>
@@ -285,8 +285,8 @@ export default function SubmitGrievancePage() {
 
           {/* Subject Field */}
           <div className="space-y-2">
-            <label className="block text-sm font-semibold text-slate-200">
-              Subject <span className="text-rose-400">*</span>
+            <label className="block font-pixel text-xs font-bold text-white uppercase">
+              Subject <span className="text-neo-pink">*</span>
             </label>
             <input
               type="text"
@@ -295,14 +295,14 @@ export default function SubmitGrievancePage() {
               placeholder="Concise summary of your concern..."
               required
               maxLength={150}
-              className="w-full px-4 py-3 rounded-xl bg-slate-900/90 border border-slate-800 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500"
+              className="w-full px-4 py-3 bg-[#121218] border-2 border-black text-white placeholder-slate-500 font-mono text-sm focus:outline-none focus:border-neo-cyan focus:shadow-[3px_3px_0px_0px_#00F0FF]"
             />
           </div>
 
           {/* Description Textarea */}
           <div className="space-y-2">
-            <label className="block text-sm font-semibold text-slate-200">
-              Detailed Description <span className="text-rose-400">*</span>
+            <label className="block font-pixel text-xs font-bold text-white uppercase">
+              Detailed Description <span className="text-neo-pink">*</span>
             </label>
             <textarea
               value={description}
@@ -310,96 +310,96 @@ export default function SubmitGrievancePage() {
               placeholder="Provide specific details, context, dates, and background regarding this concern..."
               required
               rows={6}
-              className="w-full px-4 py-3 rounded-xl bg-slate-900/90 border border-slate-800 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 resize-y"
+              className="w-full px-4 py-3 bg-[#121218] border-2 border-black text-white placeholder-slate-500 font-mono text-sm focus:outline-none focus:border-neo-cyan focus:shadow-[3px_3px_0px_0px_#00F0FF] resize-y"
             />
           </div>
 
           {/* Priority Selection */}
           <div className="space-y-2">
-            <label className="block text-sm font-semibold text-slate-200">Priority Level</label>
-            <div className="grid grid-cols-2 gap-4">
+            <label className="block font-pixel text-xs font-bold text-white uppercase">Priority Level</label>
+            <div className="grid grid-cols-2 gap-4 font-pixel text-xs">
               <button
                 type="button"
                 onClick={() => setPriority('NORMAL')}
-                className={`py-3 px-4 rounded-xl border text-sm font-semibold transition-all ${
+                className={`py-3 px-4 border-2 border-black font-bold transition-all ${
                   priority === 'NORMAL'
-                    ? 'bg-cyan-500/10 border-cyan-500/40 text-cyan-400'
-                    : 'bg-slate-900/60 border-slate-800 text-slate-400 hover:text-slate-200'
+                    ? 'bg-neo-cyan text-black shadow-[3px_3px_0px_0px_#000]'
+                    : 'bg-[#121218] text-slate-400 hover:text-white'
                 }`}
               >
-                Normal Priority
+                NORMAL PRIORITY
               </button>
               <button
                 type="button"
                 onClick={() => setPriority('URGENT')}
-                className={`py-3 px-4 rounded-xl border text-sm font-semibold transition-all flex items-center justify-center gap-2 ${
+                className={`py-3 px-4 border-2 border-black font-bold transition-all flex items-center justify-center gap-2 ${
                   priority === 'URGENT'
-                    ? 'bg-rose-500/20 border-rose-500/40 text-rose-400'
-                    : 'bg-slate-900/60 border-slate-800 text-slate-400 hover:text-slate-200'
+                    ? 'bg-neo-pink text-white shadow-[3px_3px_0px_0px_#FFE600] animate-pulse'
+                    : 'bg-[#121218] text-slate-400 hover:text-white'
                 }`}
               >
-                <AlertTriangle className="w-4 h-4" />
-                Urgent Priority
+                <AlertTriangle className="w-4 h-4 stroke-[2.5]" />
+                URGENT PRIORITY
               </button>
             </div>
           </div>
 
           {/* Optional Attachments Dropzone */}
           <div className="space-y-2">
-            <label className="block text-sm font-semibold text-slate-200">
-              Supporting Attachments <span className="text-slate-500 font-normal">(Optional, Max 10MB)</span>
+            <label className="block font-pixel text-xs font-bold text-white uppercase">
+              Supporting Attachments <span className="text-slate-400 font-normal font-mono">(Optional, Max 10MB)</span>
             </label>
             
             {file ? (
-              <div className="flex items-center justify-between p-4 rounded-xl bg-slate-900 border border-cyan-500/30 text-sm">
+              <div className="flex items-center justify-between p-4 bg-[#121218] border-2 border-black text-xs font-mono">
                 <div className="flex items-center gap-3">
-                  <Paperclip className="w-5 h-5 text-cyan-400" />
+                  <Paperclip className="w-5 h-5 text-neo-cyan stroke-[2.5]" />
                   <div>
-                    <p className="font-semibold text-white truncate max-w-xs">{file.name}</p>
-                    <p className="text-xs text-slate-400">{(file.size / (1024 * 1024)).toFixed(2)} MB</p>
+                    <p className="font-bold text-white truncate max-w-xs">{file.name}</p>
+                    <p className="text-[11px] text-slate-400">{(file.size / (1024 * 1024)).toFixed(2)} MB</p>
                   </div>
                 </div>
                 <button
                   type="button"
                   onClick={() => setFile(null)}
-                  className="p-1 rounded-lg text-slate-400 hover:text-rose-400 hover:bg-slate-800"
+                  className="p-1 bg-neo-pink text-white border border-black shadow-[2px_2px_0px_0px_#000]"
                 >
-                  <X className="w-5 h-5" />
+                  <X className="w-5 h-5 stroke-[2.5]" />
                 </button>
               </div>
             ) : (
-              <label className="flex flex-col items-center justify-center p-6 rounded-2xl border-2 border-dashed border-slate-800 hover:border-cyan-500/40 bg-slate-900/40 hover:bg-slate-900/80 cursor-pointer transition-all">
-                <UploadCloud className="w-8 h-8 text-cyan-400 mb-2" />
-                <span className="text-sm font-semibold text-slate-300">Click to upload file attachment</span>
-                <span className="text-xs text-slate-500 mt-1">PDF, JPG, PNG, WEBP, DOCX, TXT, or ZIP (up to 10MB)</span>
+              <label className="flex flex-col items-center justify-center p-6 border-3 border-dashed border-black bg-[#121218] hover:border-neo-cyan cursor-pointer transition-all">
+                <UploadCloud className="w-8 h-8 text-neo-cyan mb-2 stroke-[2.5]" />
+                <span className="font-pixel text-xs font-bold text-white">CLICK TO UPLOAD FILE ATTACHMENT</span>
+                <span className="text-[11px] text-slate-400 mt-1 font-mono">PDF, JPG, PNG, WEBP, DOCX, TXT, or ZIP (up to 10MB)</span>
                 <input type="file" onChange={handleFileChange} className="hidden" />
               </label>
             )}
           </div>
 
           {/* Response Requested Checkbox */}
-          <div className="pt-2">
+          <div className="pt-2 font-mono">
             <label className="flex items-center gap-3 cursor-pointer">
               <input
                 type="checkbox"
                 checked={wantsResponse}
                 onChange={(e) => setWantsResponse(e.target.checked)}
-                className="w-4 h-4 rounded border-slate-700 bg-slate-900 text-cyan-500 focus:ring-cyan-500"
+                className="w-4 h-4 border-2 border-black bg-[#121218] accent-neo-cyan"
               />
-              <span className="text-xs sm:text-sm text-slate-300">
+              <span className="text-xs text-slate-300 font-bold">
                 I request an official response regarding this grievance.
               </span>
             </label>
           </div>
 
           {/* Confirmation Checkbox */}
-          <div className="p-4 rounded-xl bg-slate-950 border border-slate-800">
+          <div className="p-4 bg-[#121218] border-2 border-black font-mono">
             <label className="flex items-start gap-3 cursor-pointer">
               <input
                 type="checkbox"
                 checked={confirmationTruthful}
                 onChange={(e) => setConfirmationTruthful(e.target.checked)}
-                className="w-4 h-4 rounded border-slate-700 bg-slate-900 text-cyan-500 focus:ring-cyan-500 mt-0.5"
+                className="w-4 h-4 border-2 border-black bg-[#121218] accent-neo-yellow mt-0.5"
               />
               <span className="text-xs text-slate-300 leading-relaxed">
                 I confirm that the information provided is truthful and submitted in good faith.
@@ -411,16 +411,16 @@ export default function SubmitGrievancePage() {
           <button
             type="submit"
             disabled={submitting || !confirmationTruthful}
-            className="w-full py-4 rounded-xl bg-gradient-to-r from-cyan-500 via-blue-600 to-indigo-600 hover:from-cyan-400 hover:to-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold text-base shadow-xl shadow-cyan-500/25 border border-cyan-400/40 transition-all flex items-center justify-center gap-2"
+            className="w-full py-4 bg-neo-cyan text-black font-pixel font-bold text-sm border-3 border-black shadow-[4px_4px_0px_0px_#000] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none active:translate-x-1 active:translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center justify-center gap-2 uppercase"
           >
             {submitting ? (
               <>
-                <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                <div className="w-5 h-5 border-3 border-black border-t-transparent rounded-full animate-spin" />
                 <span>Encrypting & Submitting...</span>
               </>
             ) : (
               <>
-                <ShieldCheck className="w-5 h-5" />
+                <ShieldCheck className="w-5 h-5 stroke-[2.5]" />
                 <span>Submit Grievance</span>
               </>
             )}
@@ -432,3 +432,4 @@ export default function SubmitGrievancePage() {
     </div>
   );
 }
+

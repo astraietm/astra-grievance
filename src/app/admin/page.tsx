@@ -278,8 +278,8 @@ export default function AdminDashboardPage() {
     return (
       <div className="min-h-[60vh] flex items-center justify-center">
         <div className="flex flex-col items-center gap-3">
-          <div className="w-10 h-10 border-4 border-purple-500 border-t-transparent rounded-full animate-spin" />
-          <p className="text-sm text-slate-400 font-mono">Authenticating admin portal access...</p>
+          <div className="w-10 h-10 border-4 border-neo-purple border-t-transparent animate-spin" />
+          <p className="text-xs text-neo-yellow font-pixel">Authenticating admin portal access...</p>
         </div>
       </div>
     );
@@ -288,10 +288,10 @@ export default function AdminDashboardPage() {
   if (error) {
     return (
       <div className="max-w-xl mx-auto px-4 py-20">
-        <div className="glass-card p-8 rounded-3xl border border-rose-500/30 text-center space-y-4">
-          <ShieldAlert className="w-12 h-12 text-rose-400 mx-auto" />
-          <h2 className="text-2xl font-bold text-white">Access Restricted</h2>
-          <p className="text-sm text-slate-400">{error}</p>
+        <div className="neo-card p-8 border-3 border-black shadow-[8px_8px_0px_0px_#FF2E93] text-center space-y-4 bg-[#161622]">
+          <ShieldAlert className="w-12 h-12 text-neo-pink mx-auto stroke-[2.5]" />
+          <h2 className="font-pixel text-2xl font-bold text-white">Access Restricted</h2>
+          <p className="text-xs text-slate-300 font-mono">{error}</p>
         </div>
       </div>
     );
@@ -301,58 +301,58 @@ export default function AdminDashboardPage() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
       
       {/* Header Bar */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-slate-800">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b-3 border-black">
         <div>
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-950/80 border border-purple-800/60 text-purple-300 text-xs font-mono font-semibold">
-            <ShieldAlert className="w-3.5 h-3.5" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 bg-neo-purple text-white font-pixel text-xs font-bold border-2 border-black shadow-[2px_2px_0px_0px_#FFE600]">
+            <ShieldAlert className="w-3.5 h-3.5 text-neo-yellow stroke-[2.5]" />
             <span>ROLE: {userRole}</span>
           </div>
-          <h1 className="text-3xl font-extrabold text-white mt-1">Admin Grievance Portal</h1>
-          <p className="text-xs text-slate-400 mt-1">
+          <h1 className="font-pixel text-3xl font-extrabold text-white mt-2">Admin Grievance Portal</h1>
+          <p className="text-xs text-slate-300 font-mono mt-1">
             ASTRA IETM Cyber Security Department • Reviewer Interface
           </p>
         </div>
 
         <button
           onClick={() => setShowExportModal(true)}
-          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-200 hover:text-white border border-slate-700 text-sm font-semibold transition-all self-start md:self-auto"
+          className="inline-flex items-center gap-2 px-5 py-2.5 bg-neo-cyan text-black font-pixel text-xs font-bold border-3 border-black shadow-[4px_4px_0px_0px_#000] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition-all self-start md:self-auto uppercase"
         >
-          <Download className="w-4 h-4 text-cyan-400" />
+          <Download className="w-4 h-4 stroke-[2.5]" />
           <span>Export Grievances (CSV)</span>
         </button>
       </div>
 
       {/* Statistics Cards */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-        <div className="glass-card p-4 rounded-2xl border border-slate-800 text-center space-y-1">
-          <span className="text-2xl font-extrabold font-mono text-white">{stats.total}</span>
-          <p className="text-xs text-slate-400 font-mono uppercase">Total</p>
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 font-pixel">
+        <div className="neo-card p-4 border-3 border-black shadow-[4px_4px_0px_0px_#000] text-center space-y-1 bg-[#161622]">
+          <span className="text-2xl font-extrabold text-white">{stats.total}</span>
+          <p className="text-xs text-slate-400 font-bold uppercase">Total</p>
         </div>
-        <div className="glass-card p-4 rounded-2xl border border-blue-500/30 text-center space-y-1 bg-blue-500/5">
-          <span className="text-2xl font-extrabold font-mono text-blue-400">{stats.new}</span>
-          <p className="text-xs text-blue-400 font-mono uppercase">New</p>
+        <div className="neo-card p-4 border-3 border-black shadow-[4px_4px_0px_0px_#00F0FF] text-center space-y-1 bg-neo-cyan text-black font-bold">
+          <span className="text-2xl font-extrabold">{stats.new}</span>
+          <p className="text-xs text-black uppercase font-bold">New</p>
         </div>
-        <div className="glass-card p-4 rounded-2xl border border-amber-500/30 text-center space-y-1 bg-amber-500/5">
-          <span className="text-2xl font-extrabold font-mono text-amber-400">{stats.underReview}</span>
-          <p className="text-xs text-amber-400 font-mono uppercase">Under Review</p>
+        <div className="neo-card p-4 border-3 border-black shadow-[4px_4px_0px_0px_#FFE600] text-center space-y-1 bg-neo-yellow text-black font-bold">
+          <span className="text-2xl font-extrabold">{stats.underReview}</span>
+          <p className="text-xs text-black uppercase font-bold">Under Review</p>
         </div>
-        <div className="glass-card p-4 rounded-2xl border border-purple-500/30 text-center space-y-1 bg-purple-500/5">
-          <span className="text-2xl font-extrabold font-mono text-purple-400">{stats.inProgress}</span>
-          <p className="text-xs text-purple-400 font-mono uppercase">In Progress</p>
+        <div className="neo-card p-4 border-3 border-black shadow-[4px_4px_0px_0px_#A855F7] text-center space-y-1 bg-neo-purple text-white font-bold">
+          <span className="text-2xl font-extrabold">{stats.inProgress}</span>
+          <p className="text-xs text-white uppercase font-bold">In Progress</p>
         </div>
-        <div className="glass-card p-4 rounded-2xl border border-emerald-500/30 text-center space-y-1 bg-emerald-500/5">
-          <span className="text-2xl font-extrabold font-mono text-emerald-400">{stats.resolved}</span>
-          <p className="text-xs text-emerald-400 font-mono uppercase">Resolved</p>
+        <div className="neo-card p-4 border-3 border-black shadow-[4px_4px_0px_0px_#00FF66] text-center space-y-1 bg-neo-green text-black font-bold">
+          <span className="text-2xl font-extrabold">{stats.resolved}</span>
+          <p className="text-xs text-black uppercase font-bold">Resolved</p>
         </div>
-        <div className="glass-card p-4 rounded-2xl border border-slate-700 text-center space-y-1 bg-slate-900/40">
-          <span className="text-2xl font-extrabold font-mono text-slate-400">{stats.closed}</span>
-          <p className="text-xs text-slate-400 font-mono uppercase">Closed</p>
+        <div className="neo-card p-4 border-3 border-black shadow-[4px_4px_0px_0px_#000] text-center space-y-1 bg-slate-800 text-slate-300">
+          <span className="text-2xl font-extrabold">{stats.closed}</span>
+          <p className="text-xs text-slate-300 uppercase font-bold">Closed</p>
         </div>
       </div>
 
       {/* Filter Toolbar */}
-      <div className="glass-card p-4 rounded-2xl border border-slate-800 space-y-4">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+      <div className="neo-card p-4 border-3 border-black shadow-[6px_6px_0px_0px_#000] space-y-4 bg-[#161622]">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 font-mono">
           
           {/* Search Input */}
           <form onSubmit={handleSearchSubmit} className="lg:col-span-2 relative">
@@ -361,16 +361,16 @@ export default function AdminDashboardPage() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search by ID, subject, text..."
-              className="w-full pl-9 pr-4 py-2 rounded-xl bg-slate-900 border border-slate-800 text-white placeholder-slate-500 text-xs focus:outline-none focus:border-cyan-500"
+              className="w-full pl-9 pr-4 py-2 bg-[#121218] border-2 border-black text-white placeholder-slate-500 font-mono text-xs focus:outline-none focus:border-neo-cyan"
             />
-            <Search className="w-4 h-4 text-slate-500 absolute left-3 top-2.5" />
+            <Search className="w-4 h-4 text-slate-400 absolute left-3 top-2.5 stroke-[2.5]" />
           </form>
 
           {/* Status Filter */}
           <select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
-            className="px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-white text-xs focus:outline-none focus:border-cyan-500"
+            className="px-3 py-2 bg-[#121218] border-2 border-black text-white font-pixel text-xs focus:outline-none focus:border-neo-cyan"
           >
             <option value="all">All Statuses</option>
             <option value="SUBMITTED">Submitted</option>
@@ -386,7 +386,7 @@ export default function AdminDashboardPage() {
           <select
             value={priorityFilter}
             onChange={(e) => setPriorityFilter(e.target.value)}
-            className="px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-white text-xs focus:outline-none focus:border-cyan-500"
+            className="px-3 py-2 bg-[#121218] border-2 border-black text-white font-pixel text-xs focus:outline-none focus:border-neo-cyan"
           >
             <option value="all">All Priorities</option>
             <option value="NORMAL">Normal</option>
@@ -397,7 +397,7 @@ export default function AdminDashboardPage() {
           <select
             value={sort}
             onChange={(e) => setSort(e.target.value)}
-            className="px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-white text-xs focus:outline-none focus:border-cyan-500"
+            className="px-3 py-2 bg-[#121218] border-2 border-black text-white font-pixel text-xs focus:outline-none focus:border-neo-cyan"
           >
             <option value="newest">Newest First</option>
             <option value="oldest">Oldest First</option>
@@ -407,10 +407,10 @@ export default function AdminDashboardPage() {
       </div>
 
       {/* Grievances Table */}
-      <div className="glass-card rounded-3xl border border-slate-800 overflow-hidden shadow-2xl">
+      <div className="neo-card border-3 border-black shadow-[8px_8px_0px_0px_#A855F7] overflow-hidden bg-[#161622]">
         <div className="overflow-x-auto">
-          <table className="w-full text-left text-sm text-slate-300">
-            <thead className="bg-slate-900/90 text-xs uppercase font-mono text-purple-300 border-b border-slate-800">
+          <table className="w-full text-left text-sm text-slate-200 font-mono">
+            <thead className="bg-[#121218] font-pixel text-xs uppercase text-neo-cyan border-b-3 border-black">
               <tr>
                 <th className="px-6 py-4">ID</th>
                 <th className="px-6 py-4">Date</th>
@@ -422,43 +422,43 @@ export default function AdminDashboardPage() {
                 <th className="px-6 py-4 text-right">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-800/80">
+            <tbody className="divide-y-2 divide-black">
               {grievances.map((item) => (
-                <tr key={item.id} className="hover:bg-slate-900/60 transition-colors">
-                  <td className="px-6 py-4 font-mono font-bold text-cyan-400">
+                <tr key={item.id} className="hover:bg-[#1C1C2B] transition-colors">
+                  <td className="px-6 py-4 font-pixel font-bold text-neo-yellow">
                     {item.publicId}
                   </td>
                   <td className="px-6 py-4 font-mono text-xs text-slate-400">
                     {new Date(item.createdAt).toLocaleDateString()}
                   </td>
-                  <td className="px-6 py-4 text-white font-medium">
+                  <td className="px-6 py-4 text-white font-bold">
                     {item.categoryName}
                   </td>
-                  <td className="px-6 py-4 text-slate-200 max-w-xs truncate">
+                  <td className="px-6 py-4 text-slate-300 max-w-xs truncate font-mono">
                     {item.subject}
                   </td>
                   <td className="px-6 py-4">
-                    <span className={`px-2.5 py-1 rounded-full text-xs font-semibold badge-priority-${item.priority}`}>
+                    <span className={`px-2.5 py-1 text-xs font-pixel font-bold badge-priority-${item.priority}`}>
                       {item.priority}
                     </span>
                   </td>
                   <td className="px-6 py-4">
-                    <span className={`px-2.5 py-1 rounded-full text-xs font-semibold badge-status-${item.status}`}>
+                    <span className={`px-2.5 py-1 text-xs font-pixel font-bold badge-status-${item.status}`}>
                       {item.status.replace('_', ' ')}
                     </span>
                   </td>
                   <td className="px-6 py-4">
-                    <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-slate-900 text-slate-400 border border-slate-800 text-[11px] font-mono">
-                      <Lock className="w-3 h-3 text-cyan-400" />
+                    <span className="inline-flex items-center gap-1 px-2.5 py-1 bg-[#121218] text-neo-cyan border border-black text-[11px] font-pixel font-bold">
+                      <Lock className="w-3 h-3 text-neo-cyan stroke-[2.5]" />
                       <span>Restricted</span>
                     </span>
                   </td>
                   <td className="px-6 py-4 text-right">
                     <button
                       onClick={() => openDetailModal(item.id)}
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-purple-500/10 hover:bg-purple-500/20 text-purple-300 border border-purple-500/30 text-xs font-semibold transition-all"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-neo-purple text-white border-2 border-black font-pixel text-xs font-bold shadow-[2px_2px_0px_0px_#000] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition-all"
                     >
-                      <Eye className="w-3.5 h-3.5" />
+                      <Eye className="w-3.5 h-3.5 stroke-[2.5]" />
                       <span>Review</span>
                     </button>
                   </td>
@@ -471,8 +471,8 @@ export default function AdminDashboardPage() {
 
       {/* DETAIL REVIEW DRAWER / MODAL */}
       {selectedGrievanceId && (
-        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex justify-end animate-fadeIn">
-          <div className="w-full max-w-2xl bg-slate-950 border-l border-slate-800 h-full overflow-y-auto p-6 sm:p-8 space-y-8 relative">
+        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex justify-end">
+          <div className="w-full max-w-2xl bg-[#161622] border-l-4 border-black h-full overflow-y-auto p-6 sm:p-8 space-y-8 relative">
             
             {/* Close Button */}
             <button
@@ -481,14 +481,14 @@ export default function AdminDashboardPage() {
                 setDetail(null);
                 setUnlockedIdentity(null);
               }}
-              className="absolute top-6 right-6 p-2 rounded-xl bg-slate-900 text-slate-400 hover:text-white"
+              className="absolute top-6 right-6 p-2 bg-neo-pink text-white border-2 border-black shadow-[2px_2px_0px_0px_#000]"
             >
-              <X className="w-5 h-5" />
+              <X className="w-5 h-5 stroke-[3]" />
             </button>
 
             {detailLoading || !detail ? (
               <div className="min-h-[50vh] flex items-center justify-center">
-                <div className="w-8 h-8 border-4 border-cyan-500 border-t-transparent rounded-full animate-spin" />
+                <div className="w-8 h-8 border-4 border-neo-cyan border-t-transparent animate-spin" />
               </div>
             ) : (
               <div className="space-y-8">
@@ -496,35 +496,35 @@ export default function AdminDashboardPage() {
                 {/* Header */}
                 <div className="space-y-2">
                   <div className="flex items-center gap-2">
-                    <span className="font-mono text-2xl font-extrabold text-cyan-400">
+                    <span className="font-pixel text-2xl font-extrabold text-neo-cyan">
                       {detail.publicId}
                     </span>
-                    <span className={`px-2.5 py-1 rounded-full text-xs font-semibold badge-status-${detail.status}`}>
+                    <span className={`px-2.5 py-1 text-xs font-pixel font-bold badge-status-${detail.status}`}>
                       {detail.status.replace('_', ' ')}
                     </span>
                   </div>
-                  <h2 className="text-xl font-bold text-white">{detail.subject}</h2>
-                  <p className="text-xs text-slate-400 font-mono">
+                  <h2 className="font-pixel text-xl font-bold text-white">{detail.subject}</h2>
+                  <p className="text-xs text-slate-300 font-mono">
                     Category: {detail.categoryName} • Created: {new Date(detail.createdAt).toLocaleString()}
                   </p>
                 </div>
 
                 {/* Submitter Identity Protection Box */}
-                <div className="p-5 rounded-2xl bg-slate-900/90 border border-slate-800 space-y-3">
+                <div className="p-5 bg-[#121218] border-3 border-black shadow-[4px_4px_0px_0px_#00F0FF] space-y-3">
                   <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-300 font-mono">
-                      <Lock className="w-4 h-4 text-cyan-400" />
+                    <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-neo-cyan font-pixel">
+                      <Lock className="w-4 h-4 text-neo-cyan stroke-[2.5]" />
                       <span>Complainant Identity Protection</span>
                     </div>
-                    <span className="text-[10px] uppercase font-mono px-2 py-0.5 rounded bg-slate-800 text-cyan-400">
+                    <span className="text-[10px] uppercase font-pixel font-bold px-2 py-0.5 bg-neo-yellow text-black border border-black">
                       CONFIDENTIAL
                     </span>
                   </div>
 
                   {unlockedIdentity ? (
-                    <div className="p-4 rounded-xl bg-cyan-950/50 border border-cyan-500/40 space-y-2 text-xs">
-                      <p className="text-emerald-400 font-mono font-bold">Identity Unlocked (Logged in Audit Trail)</p>
-                      <div className="grid grid-cols-2 gap-2 text-slate-300">
+                    <div className="p-4 bg-neo-green text-black border-2 border-black space-y-2 text-xs font-mono font-bold">
+                      <p className="font-pixel uppercase">★ Identity Unlocked (Logged in Audit Trail)</p>
+                      <div className="grid grid-cols-2 gap-2 text-black">
                         <p><strong>Name:</strong> {unlockedIdentity.name}</p>
                         <p><strong>Email:</strong> {unlockedIdentity.email}</p>
                         <p><strong>Department:</strong> {unlockedIdentity.department}</p>
@@ -532,31 +532,31 @@ export default function AdminDashboardPage() {
                       </div>
                     </div>
                   ) : (
-                    <div className="flex items-center justify-between text-xs text-slate-400">
-                      <span>Status: <strong className="text-slate-200">Restricted from Reviewers</strong></span>
+                    <div className="flex items-center justify-between text-xs text-slate-300 font-mono">
+                      <span>Status: <strong className="text-neo-yellow font-pixel font-bold">Restricted from Reviewers</strong></span>
                       {userRole === 'SUPER_ADMIN' ? (
                         <button
                           onClick={() => setShowIdentityModal(true)}
-                          className="px-3 py-1.5 rounded-lg bg-rose-500/20 hover:bg-rose-500/30 text-rose-300 border border-rose-500/40 font-semibold text-xs transition-all"
+                          className="px-3 py-1.5 bg-neo-pink text-white border-2 border-black font-pixel font-bold text-xs shadow-[2px_2px_0px_0px_#000] hover:translate-x-0.5 hover:translate-y-0.5"
                         >
                           Request Identity Access
                         </button>
                       ) : (
-                        <span className="text-[11px] text-slate-500 italic">Identity access restricted to SUPER_ADMIN</span>
+                        <span className="text-[11px] text-slate-400 italic">Identity access restricted to SUPER_ADMIN</span>
                       )}
                     </div>
                   )}
                 </div>
 
                 {/* Status Update Control */}
-                <div className="p-5 rounded-2xl bg-slate-900/60 border border-slate-800 space-y-2">
-                  <label className="block text-xs font-semibold text-slate-300 uppercase font-mono">
+                <div className="p-5 bg-[#121218] border-3 border-black space-y-2">
+                  <label className="block text-xs font-bold text-neo-yellow uppercase font-pixel">
                     Change Grievance Status
                   </label>
                   <select
                     value={detail.status}
                     onChange={(e) => handleStatusChange(e.target.value)}
-                    className="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-white text-xs focus:outline-none focus:border-cyan-500"
+                    className="w-full px-4 py-2.5 bg-[#161622] border-2 border-black text-white font-pixel text-xs focus:outline-none focus:border-neo-cyan"
                   >
                     <option value="SUBMITTED">SUBMITTED</option>
                     <option value="UNDER_REVIEW">UNDER REVIEW</option>
@@ -570,8 +570,8 @@ export default function AdminDashboardPage() {
 
                 {/* Grievance Description */}
                 <div className="space-y-2">
-                  <h4 className="text-xs uppercase font-mono font-bold text-slate-400">Grievance Description</h4>
-                  <div className="p-5 rounded-2xl bg-slate-900/80 border border-slate-800 text-sm text-slate-200 leading-relaxed whitespace-pre-wrap">
+                  <h3 className="text-xs uppercase font-pixel font-bold text-neo-cyan">Grievance Description</h3>
+                  <div className="p-5 bg-[#121218] border-2 border-black text-sm text-slate-200 font-mono leading-relaxed whitespace-pre-wrap">
                     {detail.description}
                   </div>
                 </div>
@@ -579,21 +579,21 @@ export default function AdminDashboardPage() {
                 {/* Attachments */}
                 {detail.attachments && detail.attachments.length > 0 && (
                   <div className="space-y-2">
-                    <h4 className="text-xs uppercase font-mono font-bold text-slate-400">Submitted Attachments</h4>
-                    <div className="space-y-2">
+                    <h3 className="text-xs uppercase font-pixel font-bold text-neo-yellow">Submitted Attachments</h3>
+                    <div className="space-y-2 font-mono">
                       {detail.attachments.map((att) => (
                         <a
                           key={att.id}
                           href={`/api/attachments/${att.id}`}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex items-center justify-between p-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-xs text-cyan-400 font-mono transition-all"
+                          className="flex items-center justify-between p-3.5 bg-[#121218] border-2 border-black text-xs text-neo-cyan font-bold transition-all hover:bg-neo-cyan hover:text-black"
                         >
                           <div className="flex items-center gap-2 truncate">
-                            <Paperclip className="w-4 h-4 shrink-0 text-cyan-400" />
+                            <Paperclip className="w-4 h-4 shrink-0 stroke-[2.5]" />
                             <span className="truncate">{att.originalFilename}</span>
                           </div>
-                          <span className="text-slate-500 text-[11px]">Download</span>
+                          <span className="uppercase text-[11px]">Download</span>
                         </a>
                       ))}
                     </div>
@@ -601,33 +601,33 @@ export default function AdminDashboardPage() {
                 )}
 
                 {/* Official Public Responses */}
-                <div className="space-y-3 pt-4 border-t border-slate-800">
-                  <h4 className="text-xs uppercase font-mono font-bold text-cyan-400">
+                <div className="space-y-3 pt-4 border-t-3 border-black">
+                  <h3 className="text-xs uppercase font-pixel font-bold text-neo-cyan">
                     Official Responses (Visible to Submitter)
-                  </h4>
+                  </h3>
 
-                  <form onSubmit={handleAddResponse} className="space-y-2">
+                  <form onSubmit={handleAddResponse} className="space-y-2 font-mono">
                     <textarea
                       value={newResponse}
                       onChange={(e) => setNewResponse(e.target.value)}
                       placeholder="Write official response message..."
                       rows={3}
-                      className="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-white placeholder-slate-500 text-xs focus:outline-none focus:border-cyan-500"
+                      className="w-full px-4 py-2.5 bg-[#121218] border-2 border-black text-white placeholder-slate-500 text-xs focus:outline-none focus:border-neo-cyan"
                     />
                     <button
                       type="submit"
                       disabled={submittingAction || !newResponse.trim()}
-                      className="px-4 py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-xs flex items-center gap-1.5"
+                      className="px-4 py-2 bg-neo-cyan text-black font-pixel font-bold text-xs border-2 border-black shadow-[2px_2px_0px_0px_#000] flex items-center gap-1.5 uppercase"
                     >
-                      <Send className="w-3.5 h-3.5" />
+                      <Send className="w-3.5 h-3.5 stroke-[2.5]" />
                       <span>Publish Response</span>
                     </button>
                   </form>
 
-                  <div className="space-y-2 pt-2">
+                  <div className="space-y-2 pt-2 font-mono">
                     {detail.responses.map((resp) => (
-                      <div key={resp.id} className="p-4 rounded-xl bg-cyan-950/30 border border-cyan-800/40 text-xs space-y-1">
-                        <div className="flex items-center justify-between text-[11px] text-cyan-400 font-mono">
+                      <div key={resp.id} className="p-4 bg-[#121218] border-2 border-black text-xs space-y-1">
+                        <div className="flex items-center justify-between text-[11px] text-neo-cyan font-pixel font-bold">
                           <span>{resp.admin?.name || 'Admin'}</span>
                           <span>{new Date(resp.createdAt).toLocaleString()}</span>
                         </div>
@@ -638,32 +638,32 @@ export default function AdminDashboardPage() {
                 </div>
 
                 {/* Internal Admin Notes */}
-                <div className="space-y-3 pt-4 border-t border-slate-800">
-                  <h4 className="text-xs uppercase font-mono font-bold text-purple-400">
+                <div className="space-y-3 pt-4 border-t-3 border-black">
+                  <h3 className="text-xs uppercase font-pixel font-bold text-neo-purple">
                     Internal Reviewer Notes (Private to Admins)
-                  </h4>
+                  </h3>
 
-                  <form onSubmit={handleAddNote} className="space-y-2">
+                  <form onSubmit={handleAddNote} className="space-y-2 font-mono">
                     <textarea
                       value={newNote}
                       onChange={(e) => setNewNote(e.target.value)}
                       placeholder="Add internal investigation note..."
                       rows={2}
-                      className="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-white placeholder-slate-500 text-xs focus:outline-none focus:border-purple-500"
+                      className="w-full px-4 py-2.5 bg-[#121218] border-2 border-black text-white placeholder-slate-500 text-xs focus:outline-none focus:border-neo-purple"
                     />
                     <button
                       type="submit"
                       disabled={submittingAction || !newNote.trim()}
-                      className="px-4 py-2 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs"
+                      className="px-4 py-2 bg-neo-purple text-white font-pixel font-bold text-xs border-2 border-black shadow-[2px_2px_0px_0px_#FFE600] uppercase"
                     >
                       Add Internal Note
                     </button>
                   </form>
 
-                  <div className="space-y-2 pt-2">
+                  <div className="space-y-2 pt-2 font-mono">
                     {detail.adminNotes.map((n) => (
-                      <div key={n.id} className="p-3.5 rounded-xl bg-slate-900 border border-slate-800 text-xs space-y-1">
-                        <div className="flex items-center justify-between text-[11px] text-slate-400 font-mono">
+                      <div key={n.id} className="p-3.5 bg-[#121218] border-2 border-black text-xs space-y-1">
+                        <div className="flex items-center justify-between text-[11px] text-slate-400 font-pixel">
                           <span>{n.admin?.name} ({n.admin?.role})</span>
                           <span>{new Date(n.createdAt).toLocaleString()}</span>
                         </div>
@@ -683,31 +683,31 @@ export default function AdminDashboardPage() {
       {/* SUPER_ADMIN IDENTITY UNLOCK REASON MODAL */}
       {showIdentityModal && (
         <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="w-full max-w-md glass-card p-6 rounded-3xl border border-rose-500/40 space-y-5">
+          <div className="w-full max-w-md neo-card p-6 border-3 border-black shadow-[8px_8px_0px_0px_#FF2E93] space-y-5 bg-[#161622]">
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2 text-rose-400 font-bold text-base">
-                <AlertTriangle className="w-5 h-5" />
+              <div className="flex items-center gap-2 text-neo-pink font-pixel font-bold text-sm">
+                <AlertTriangle className="w-5 h-5 stroke-[2.5]" />
                 <span>Restricted Identity Access</span>
               </div>
               <button onClick={() => setShowIdentityModal(false)} className="text-slate-400 hover:text-white">
-                <X className="w-5 h-5" />
+                <X className="w-5 h-5 stroke-[3]" />
               </button>
             </div>
 
-            <p className="text-xs text-slate-300 leading-relaxed">
-              Accessing complainant identity requires explicit justification. This request will be permanently logged in the <code className="text-cyan-400 font-mono">IdentityAccessLog</code> audit table.
+            <p className="text-xs text-slate-300 font-mono leading-relaxed">
+              Accessing complainant identity requires explicit justification. This request will be permanently logged in the <code className="text-neo-cyan font-pixel font-bold">IdentityAccessLog</code> audit table.
             </p>
 
             {unlockError && (
-              <div className="p-3 rounded-xl bg-rose-500/20 text-rose-300 text-xs">
+              <div className="p-3 bg-neo-pink text-white border-2 border-black text-xs font-mono">
                 {unlockError}
               </div>
             )}
 
-            <form onSubmit={handleUnlockIdentity} className="space-y-4">
+            <form onSubmit={handleUnlockIdentity} className="space-y-4 font-mono">
               <div>
-                <label className="block text-xs font-semibold text-slate-200 mb-1">
-                  Mandatory Justification Reason <span className="text-rose-400">*</span>
+                <label className="block text-xs font-pixel font-bold text-white mb-1 uppercase">
+                  Mandatory Justification Reason <span className="text-neo-pink">*</span>
                 </label>
                 <textarea
                   value={identityReason}
@@ -715,22 +715,22 @@ export default function AdminDashboardPage() {
                   placeholder="State legitimate operational or safety reason..."
                   required
                   rows={3}
-                  className="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-white text-xs focus:outline-none focus:border-rose-500"
+                  className="w-full px-4 py-2.5 bg-[#121218] border-2 border-black text-white text-xs focus:outline-none focus:border-neo-pink"
                 />
               </div>
 
-              <div className="flex items-center justify-end gap-3">
+              <div className="flex items-center justify-end gap-3 font-pixel">
                 <button
                   type="button"
                   onClick={() => setShowIdentityModal(false)}
-                  className="px-4 py-2 rounded-xl bg-slate-900 text-slate-300 text-xs"
+                  className="px-4 py-2 bg-slate-800 text-slate-300 border-2 border-black text-xs font-bold"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={unlockLoading || !identityReason.trim()}
-                  className="px-5 py-2 rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-bold text-xs"
+                  className="px-5 py-2 bg-neo-pink text-white font-bold text-xs border-2 border-black shadow-[2px_2px_0px_0px_#FFE600] uppercase"
                 >
                   {unlockLoading ? 'Logging & Unlocking...' : 'Unlock Identity'}
                 </button>
@@ -743,34 +743,34 @@ export default function AdminDashboardPage() {
       {/* CSV EXPORT MODAL */}
       {showExportModal && (
         <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="w-full max-w-md glass-card p-6 rounded-3xl border border-slate-800 space-y-5">
+          <div className="w-full max-w-md neo-card p-6 border-3 border-black shadow-[8px_8px_0px_0px_#00F0FF] space-y-5 bg-[#161622]">
             <div className="flex items-center justify-between">
-              <h3 className="font-bold text-white text-base">Export Grievances (CSV)</h3>
+              <h3 className="font-pixel font-bold text-white text-sm uppercase">Export Grievances (CSV)</h3>
               <button onClick={() => setShowExportModal(false)} className="text-slate-400 hover:text-white">
-                <X className="w-5 h-5" />
+                <X className="w-5 h-5 stroke-[3]" />
               </button>
             </div>
 
-            <p className="text-xs text-slate-400">
+            <p className="text-xs text-slate-300 font-mono">
               Export all grievances in CSV format for administrative recordkeeping.
             </p>
 
-            <div className="space-y-3 pt-2">
+            <div className="space-y-3 pt-2 font-mono">
               {userRole === 'SUPER_ADMIN' && (
                 <label className="flex items-center gap-2 cursor-pointer">
                   <input
                     type="checkbox"
                     checked={exportIncludeIdentity}
                     onChange={(e) => setExportIncludeIdentity(e.target.checked)}
-                    className="w-4 h-4 rounded border-slate-700 bg-slate-900 text-rose-500"
+                    className="w-4 h-4 border-2 border-black bg-[#121218] accent-neo-pink"
                   />
-                  <span className="text-xs text-rose-300 font-semibold">Include Complainant Identity Details (SUPER_ADMIN)</span>
+                  <span className="text-xs text-neo-pink font-bold">Include Complainant Identity Details (SUPER_ADMIN)</span>
                 </label>
               )}
 
               {exportIncludeIdentity && (
                 <div>
-                  <label className="block text-xs font-semibold text-slate-300 mb-1">
+                  <label className="block text-xs font-pixel font-bold text-white mb-1 uppercase">
                     Justification Reason for Identity Export
                   </label>
                   <input
@@ -779,22 +779,22 @@ export default function AdminDashboardPage() {
                     onChange={(e) => setExportReason(e.target.value)}
                     placeholder="Reason for exporting identities..."
                     required
-                    className="w-full px-4 py-2 rounded-xl bg-slate-900 border border-slate-800 text-white text-xs"
+                    className="w-full px-4 py-2 bg-[#121218] border-2 border-black text-white text-xs"
                   />
                 </div>
               )}
             </div>
 
-            <div className="flex items-center justify-end gap-3 pt-4 border-t border-slate-800">
+            <div className="flex items-center justify-end gap-3 pt-4 border-t-2 border-black font-pixel">
               <button
                 onClick={() => setShowExportModal(false)}
-                className="px-4 py-2 rounded-xl bg-slate-900 text-slate-300 text-xs"
+                className="px-4 py-2 bg-slate-800 text-slate-300 border-2 border-black text-xs font-bold"
               >
                 Cancel
               </button>
               <button
                 onClick={triggerExport}
-                className="px-5 py-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold text-xs"
+                className="px-5 py-2 bg-neo-cyan text-black font-bold text-xs border-2 border-black shadow-[2px_2px_0px_0px_#000] uppercase"
               >
                 Download CSV
               </button>
@@ -806,3 +806,4 @@ export default function AdminDashboardPage() {
     </div>
   );
 }
+

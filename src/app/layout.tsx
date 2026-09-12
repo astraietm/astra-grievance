@@ -44,7 +44,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="dark">
-      <body className="min-h-screen flex flex-col bg-cyber-bg text-slate-100 antialiased selection:bg-cyan-500/30 selection:text-cyan-200">
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&family=Press+Start+2P&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap"
+          rel="stylesheet"
+        />
+      </head>
+      <body className="min-h-screen flex flex-col bg-neo-dark text-slate-100 font-mono antialiased selection:bg-neo-yellow selection:text-black">
         <Providers>
           <Navbar />
           <main className="flex-grow">{children}</main>
