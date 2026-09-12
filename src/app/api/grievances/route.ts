@@ -8,6 +8,7 @@ import {
   validateUploadedFile,
   sanitizeFilename,
 } from '@/lib/security';
+import { sendGrievanceSubmissionEmail } from '@/lib/email';
 import path from 'path';
 import fs from 'fs/promises';
 
@@ -129,6 +130,22 @@ export async function POST(req: NextRequest) {
       },
     });
 
+    // 9. Send Email Notification via Resend
+    if (user.email) {
+      try {
+        await sendGrievanceSubmissionEmail({
+          toEmail: user.email,
+          submitterName: user.name,
+          publicId: grievance.publicId,
+          subject: grievance.subject,
+          categoryName: categoryExists.name,
+          status: grievance.status,
+        });
+      } catch (emailError) {
+        console.error('[Resend] Error sending grievance submission email:', emailError);
+      }
+    }
+
     return NextResponse.json({
       success: true,
       publicId: grievance.publicId,
@@ -142,3 +159,4 @@ export async function POST(req: NextRequest) {
     );
   }
 }
+

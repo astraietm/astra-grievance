@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getCurrentUser } from '@/lib/auth';
 import { prisma } from '@/lib/db';
 import { sanitizeInput } from '@/lib/security';
+import { sendGrievanceStatusUpdateEmail } from '@/lib/email';
 
 export const dynamic = 'force-dynamic';
 
@@ -104,6 +105,21 @@ export async function PATCH(
     const body = await req.json();
     const { status, priority, assignedToId } = body;
 
+    const existingGrievance = await prisma.grievance.findUnique({
+      where: { id: params.id },
+      include: {
+        user: { select: { email: true, name: true } },
+        category: { select: { name: true } },
+      },
+    });
+
+    if (!existingGrievance) {
+      return NextResponse.json(
+        { success: false, error: 'Grievance not found.' },
+        { status: 404 }
+      );
+    }
+
     const dataToUpdate: any = {};
 
     if (status) {
@@ -136,6 +152,23 @@ export async function PATCH(
       where: { id: params.id },
       data: dataToUpdate,
     });
+
+    // Send email notification on status change if status changed and user email exists
+    if (status && status !== existingGrievance.status && existingGrievance.user?.email) {
+      try {
+        await sendGrievanceStatusUpdateEmail({
+          toEmail: existingGrievance.user.email,
+          submitterName: existingGrievance.user.name,
+          publicId: updatedGrievance.publicId,
+          subject: updatedGrievance.subject,
+          categoryName: existingGrievance.category.name,
+          oldStatus: existingGrievance.status,
+          newStatus: updatedGrievance.status,
+        });
+      } catch (emailError) {
+        console.error('[Resend] Error sending status update email:', emailError);
+      }
+    }
 
     return NextResponse.json({
       success: true,
@@ -208,15 +241,39 @@ export async function POST(
         },
       });
 
-      // Optionally update status to UNDER_REVIEW or IN_PROGRESS if SUBMITTED
+      // Optionally update status to UNDER_REVIEW if SUBMITTED
       const currentGrievance = await prisma.grievance.findUnique({
         where: { id: params.id },
+        include: {
+          user: { select: { email: true, name: true } },
+          category: { select: { name: true } },
+        },
       });
+
+      let updatedStatus = currentGrievance?.status || 'UNDER_REVIEW';
       if (currentGrievance?.status === 'SUBMITTED') {
+        updatedStatus = 'UNDER_REVIEW';
         await prisma.grievance.update({
           where: { id: params.id },
           data: { status: 'UNDER_REVIEW' },
         });
+      }
+
+      // Send email to submitter with response message
+      if (currentGrievance?.user?.email) {
+        try {
+          await sendGrievanceStatusUpdateEmail({
+            toEmail: currentGrievance.user.email,
+            submitterName: currentGrievance.user.name,
+            publicId: currentGrievance.publicId,
+            subject: currentGrievance.subject,
+            categoryName: currentGrievance.category.name,
+            newStatus: updatedStatus,
+            responseMessage: cleanText,
+          });
+        } catch (emailError) {
+          console.error('[Resend] Error sending response email:', emailError);
+        }
       }
 
       return NextResponse.json({
@@ -239,3 +296,4 @@ export async function POST(
     );
   }
 }
+
