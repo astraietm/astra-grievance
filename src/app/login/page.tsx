@@ -42,10 +42,6 @@ function LoginForm() {
     }
   };
 
-  const handleQuickFill = (accEmail: string) => {
-    setEmail(accEmail);
-    setPassword('AstraSecure2026!');
-  };
 
   return (
     <div className="w-full max-w-md space-y-8 neo-card p-8 border-3 border-black shadow-[8px_8px_0px_0px_#00F0FF] relative bg-[#161622]">
@@ -153,30 +149,6 @@ function LoginForm() {
         </button>
       </form>
 
-      {/* Development Pre-filled Quick Fill Buttons */}
-      <div className="pt-2 space-y-2">
-        <p className="text-[11px] text-slate-400 font-pixel uppercase text-center">Quick Test Accounts:</p>
-        <div className="flex flex-wrap items-center justify-center gap-2 text-[11px] font-pixel font-bold">
-          <button
-            onClick={() => handleQuickFill('admin@astraietm.in')}
-            className="px-2.5 py-1 bg-neo-purple text-white border-2 border-black shadow-[2px_2px_0px_0px_#000] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none"
-          >
-            Super Admin
-          </button>
-          <button
-            onClick={() => handleQuickFill('reviewer@astraietm.in')}
-            className="px-2.5 py-1 bg-neo-cyan text-black border-2 border-black shadow-[2px_2px_0px_0px_#000] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none"
-          >
-            Reviewer
-          </button>
-          <button
-            onClick={() => handleQuickFill('student@astraietm.in')}
-            className="px-2.5 py-1 bg-neo-green text-black border-2 border-black shadow-[2px_2px_0px_0px_#000] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none"
-          >
-            Student User
-          </button>
-        </div>
-      </div>
 
       {/* Privacy Note Footer */}
       <div className="pt-4 border-t-2 border-black flex items-start gap-2.5 text-xs text-slate-300 font-mono">
