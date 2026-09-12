@@ -14,7 +14,7 @@ export async function GET(req: NextRequest) {
       );
     }
 
-    const { searchParams } = new URL(req.url);
+    const searchParams = req.nextUrl.searchParams;
     const categorySlug = searchParams.get('category');
     const status = searchParams.get('status');
     const priority = searchParams.get('priority');

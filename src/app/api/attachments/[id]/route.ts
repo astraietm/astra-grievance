@@ -4,6 +4,8 @@ import { prisma } from '@/lib/db';
 import path from 'path';
 import fs from 'fs/promises';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(
   req: NextRequest,
   { params }: { params: { id: string } }

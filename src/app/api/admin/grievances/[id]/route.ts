@@ -3,6 +3,8 @@ import { getCurrentUser } from '@/lib/auth';
 import { prisma } from '@/lib/db';
 import { sanitizeInput } from '@/lib/security';
 
+export const dynamic = 'force-dynamic';
+
 // 1. GET Grievance Details for Admin
 export async function GET(
   req: NextRequest,

@@ -15,7 +15,7 @@ export async function GET(req: NextRequest) {
       );
     }
 
-    const { searchParams } = new URL(req.url);
+    const searchParams = req.nextUrl.searchParams;
     const includeIdentity = searchParams.get('includeIdentity') === 'true';
     const reason = searchParams.get('reason');
 

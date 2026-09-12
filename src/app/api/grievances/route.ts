@@ -11,6 +11,8 @@ import {
 import path from 'path';
 import fs from 'fs/promises';
 
+export const dynamic = 'force-dynamic';
+
 export async function POST(req: NextRequest) {
   try {
     // 1. Server-side authentication check

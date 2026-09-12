@@ -4,6 +4,10 @@ import Providers from '@/components/Providers';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
+const defaultUrl = 'https://grievance.astraietm.in';
+const rawUrl = process.env.NEXTAUTH_URL || (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : defaultUrl);
+const baseUrl = rawUrl.startsWith('http') ? rawUrl : `https://${rawUrl}`;
+
 export const metadata: Metadata = {
   title: 'Confidential Grievance Portal | ASTRA IETM Cyber Security Department',
   description:
@@ -17,7 +21,7 @@ export const metadata: Metadata = {
     'Student Grievance System',
     'grievance.astraietm.in',
   ],
-  metadataBase: new URL('https://grievance.astraietm.in'),
+  metadataBase: new URL(baseUrl),
   openGraph: {
     title: 'ASTRA IETM Confidential Grievance Portal',
     description: 'Speak up. Be heard. Stay protected. Confidential grievance portal for KMCT IET Cyber Security Department.',
