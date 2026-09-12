@@ -4,6 +4,16 @@ import CredentialsProvider from 'next-auth/providers/credentials';
 import { prisma } from './db';
 import bcrypt from 'bcryptjs';
 
+if (!process.env.NEXTAUTH_URL || process.env.NEXTAUTH_URL.trim() === '') {
+  if (process.env.VERCEL_URL && process.env.VERCEL_URL.trim() !== '') {
+    process.env.NEXTAUTH_URL = `https://${process.env.VERCEL_URL}`;
+  } else {
+    process.env.NEXTAUTH_URL = 'https://grievance.astraietm.in';
+  }
+} else if (!process.env.NEXTAUTH_URL.startsWith('http')) {
+  process.env.NEXTAUTH_URL = `https://${process.env.NEXTAUTH_URL}`;
+}
+
 export const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET || 'astra_super_secret_jwt_key_2026',
   session: {

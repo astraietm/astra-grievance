@@ -4,9 +4,14 @@ import Providers from '@/components/Providers';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
-const defaultUrl = 'https://grievance.astraietm.in';
-const rawUrl = process.env.NEXTAUTH_URL || (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : defaultUrl);
-const baseUrl = rawUrl.startsWith('http') ? rawUrl : `https://${rawUrl}`;
+const getBaseUrl = (): string => {
+  const url = process.env.NEXTAUTH_URL || (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'https://grievance.astraietm.in');
+  if (!url || typeof url !== 'string' || url.trim() === '') return 'https://grievance.astraietm.in';
+  const trimmed = url.trim();
+  return trimmed.startsWith('http') ? trimmed : `https://${trimmed}`;
+};
+
+const baseUrl = getBaseUrl();
 
 export const metadata: Metadata = {
   title: 'Confidential Grievance Portal | ASTRA IETM Cyber Security Department',
