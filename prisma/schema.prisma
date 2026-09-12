@@ -1,0 +1,110 @@
+// Prisma Schema for ASTRA IETM Confidential Grievance Portal
+// Compatible with both SQLite (local dev) and PostgreSQL (production)
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                 String              @id @default(uuid())
+  googleUserId       String?             @unique
+  email              String              @unique
+  name               String?
+  role               String              @default("USER") // USER, REVIEWER, ADMIN, SUPER_ADMIN
+  department         String?             @default("Cyber Security")
+  year               String?
+  passwordHash       String?
+  createdAt          DateTime            @default(now())
+  updatedAt          DateTime            @updatedAt
+  
+  grievances         Grievance[]         @relation("UserGrievances")
+  assignedGrievances Grievance[]         @relation("AssignedGrievances")
+  adminNotes         AdminNote[]
+  responses          Response[]
+  identityLogs       IdentityAccessLog[]
+}
+
+model Category {
+  id          String      @id @default(uuid())
+  name        String      @unique
+  slug        String      @unique
+  description String?
+  active      Boolean     @default(true)
+  createdAt   DateTime    @default(now())
+  grievances  Grievance[]
+}
+
+model Grievance {
+  id                   String              @id @default(uuid())
+  publicId             String              @unique // Format: GRV-2026-0001
+  userId               String
+  user                 User                @relation("UserGrievances", fields: [userId], references: [id])
+  categoryId           String
+  category             Category            @relation(fields: [categoryId], references: [id])
+  subject              String
+  description          String
+  priority             String              @default("NORMAL") // NORMAL, URGENT
+  status               String              @default("SUBMITTED") // SUBMITTED, UNDER_REVIEW, IN_PROGRESS, AWAITING_INFO, RESOLVED, CLOSED, REJECTED
+  wantsResponse        Boolean             @default(false)
+  confirmationTruthful Boolean             @default(true)
+  assignedToId         String?
+  assignedTo           User?               @relation("AssignedGrievances", fields: [assignedToId], references: [id])
+  createdAt            DateTime            @default(now())
+  updatedAt            DateTime            @updatedAt
+
+  attachments          Attachment[]
+  adminNotes           AdminNote[]
+  responses            Response[]
+  identityAccessLogs   IdentityAccessLog[]
+
+  @@index([publicId])
+  @@index([userId])
+  @@index([status])
+}
+
+model Attachment {
+  id               String    @id @default(uuid())
+  grievanceId      String
+  grievance        Grievance @relation(fields: [grievanceId], references: [id], onDelete: Cascade)
+  storagePath      String
+  originalFilename String
+  mimeType         String
+  fileSize         Int
+  createdAt        DateTime  @default(now())
+}
+
+model AdminNote {
+  id          String    @id @default(uuid())
+  grievanceId String
+  grievance   Grievance @relation(fields: [grievanceId], references: [id], onDelete: Cascade)
+  adminId     String
+  admin       User      @relation(fields: [adminId], references: [id])
+  note        String
+  createdAt   DateTime  @default(now())
+}
+
+model Response {
+  id          String    @id @default(uuid())
+  grievanceId String
+  grievance   Grievance @relation(fields: [grievanceId], references: [id], onDelete: Cascade)
+  adminId     String
+  admin       User      @relation(fields: [adminId], references: [id])
+  message     String
+  isPublic    Boolean   @default(true)
+  createdAt   DateTime  @default(now())
+}
+
+model IdentityAccessLog {
+  id          String    @id @default(uuid())
+  grievanceId String
+  grievance   Grievance @relation(fields: [grievanceId], references: [id], onDelete: Cascade)
+  adminId     String
+  admin       User      @relation(fields: [adminId], references: [id])
+  reason      String
+  accessedAt  DateTime  @default(now())
+}

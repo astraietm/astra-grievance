@@ -1,0 +1,123 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-main: #070b14;
+  --bg-card: rgba(15, 23, 42, 0.75);
+  --border-card: rgba(30, 41, 59, 0.8);
+  --cyber-cyan: #06b6d4;
+  --cyber-blue: #3b82f6;
+  --cyber-purple: #8b5cf6;
+}
+
+body {
+  background-color: var(--bg-main);
+  color: #f8fafc;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  overflow-x: hidden;
+  background-image: 
+    radial-gradient(circle at 50% 0%, rgba(6, 182, 212, 0.12) 0%, transparent 60%),
+    radial-gradient(circle at 100% 100%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
+    linear-gradient(rgba(15, 23, 42, 0.4) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 23, 42, 0.4) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 32px 32px, 32px 32px;
+}
+
+/* Glassmorphism Card Utility */
+.glass-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-card);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.glass-card-hover {
+  transition: all 0.25s ease-in-out;
+}
+
+.glass-card-hover:hover {
+  border-color: rgba(6, 182, 212, 0.4);
+  box-shadow: 0 0 25px -5px rgba(6, 182, 212, 0.25);
+  transform: translateY(-2px);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #070b14;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #06b6d4;
+}
+
+/* Gradient text */
+.text-gradient {
+  background: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-cyan-gradient {
+  background: linear-gradient(135deg, #22d3ee 0%, #3b82f6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Status Badges */
+.badge-status-SUBMITTED {
+  @apply bg-blue-500/10 text-blue-400 border border-blue-500/30;
+}
+.badge-status-UNDER_REVIEW {
+  @apply bg-amber-500/10 text-amber-400 border border-amber-500/30;
+}
+.badge-status-IN_PROGRESS {
+  @apply bg-purple-500/10 text-purple-400 border border-purple-500/30;
+}
+.badge-status-AWAITING_INFO {
+  @apply bg-cyan-500/10 text-cyan-400 border border-cyan-500/30;
+}
+.badge-status-RESOLVED {
+  @apply bg-emerald-500/10 text-emerald-400 border border-emerald-500/30;
+}
+.badge-status-CLOSED {
+  @apply bg-slate-500/10 text-slate-400 border border-slate-500/30;
+}
+.badge-status-REJECTED {
+  @apply bg-rose-500/10 text-rose-400 border border-rose-500/30;
+}
+
+/* Priority Badges */
+.badge-priority-NORMAL {
+  @apply bg-slate-800/80 text-slate-300 border border-slate-700;
+}
+.badge-priority-URGENT {
+  @apply bg-red-500/20 text-red-400 border border-red-500/40 animate-pulse;
+}
+
+/* Subtle Security Pulsing Ring */
+@keyframes cyber-pulse {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+.animate-cyber-pulse {
+  animation: cyber-pulse 4s infinite ease-in-out;
+}
