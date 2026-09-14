@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     'Secure, confidential grievance submission portal for students and department members at KMCT Institute of Engineering and Technology. Identity verified via Google, confidential from reviewers.',
   keywords: [
     'ASTRA IETM',
-    'KMCT IET',
+    'KMCT IETM',
     'KMCT Grievance',
     'Cyber Security Department',
     'Confidential Grievance Portal',
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   openGraph: {
     title: 'ASTRA IETM Confidential Grievance Portal',
-    description: 'Speak up. Be heard. Stay protected. Confidential grievance portal for KMCT IET Cyber Security Department.',
+    description: 'Speak up. Be heard. Stay protected. Confidential grievance portal for KMCT IETM Cyber Security Department.',
     url: 'https://grievance.astraietm.in',
     siteName: 'ASTRA IETM Grievance Portal',
     locale: 'en_US',

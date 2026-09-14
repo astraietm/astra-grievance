@@ -71,7 +71,7 @@ export default function LandingPage() {
 
           {/* Description */}
           <p className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed font-mono">
-            A secure platform for students and department members of KMCT Institute of Engineering and Technology to report concerns, issues, and grievances confidentially.
+            A secure platform for students and department members of KMCT Institute of Emerging Technology and Management to report concerns, issues, and grievances confidentially.
           </p>
 
           {/* CTA Buttons */}
